@@ -1,4 +1,4 @@
-package controllers;
+package com.example.studentms.controllers;
 import java.security.Provider.Service;
 import java.util.List;
 
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.studentms.entity.student;
 import com.example.studentms.repository.StudentRepo;
+import com.example.studentms.services.StudentService;
 
-import entity.student;
 import lombok.RequiredArgsConstructor;
-import services.StudentService;
 
 @RestController
 @RequestMapping(path="/students")
@@ -45,12 +45,12 @@ public class MainController {
 	}
 	
 	@PutMapping("/{id}")
-	public student updateStudent(@PathVariable String name,@RequestBody student st) {
+	public student updateStudent(@PathVariable("id") String name,@RequestBody student st) {
 		return servicelayer.updateStudent(name, st);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteStudent(@PathVariable String name) {
+	public void deleteStudent(@PathVariable("id") String name) {
 		servicelayer.deleteStudent(name);
 	}
 	

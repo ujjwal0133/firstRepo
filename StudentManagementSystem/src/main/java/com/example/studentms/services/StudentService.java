@@ -1,13 +1,13 @@
-package services;
+package com.example.studentms.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
+import com.example.studentms.entity.student;
 import com.example.studentms.repository.StudentRepo;
 
-import entity.student;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -41,6 +41,7 @@ public class StudentService {
 	public student updateStudent(String id,student s) {
 		student old = RepoService.getById(id);
 		
+		old.setId(s.getId());
 		old.setName(s.getName());
 		old.setAge(s.getAge());
 		old.setEmail(s.getEmail());
@@ -50,8 +51,9 @@ public class StudentService {
 	}
 	
 	public void deleteStudent(String id) {
+		
+		System.out.println("DEBUG");
 		 RepoService.deleteById(id);
-		 System.out.println( "Student deleted");
 		
 	}
 	
